@@ -46,7 +46,7 @@ interface GenerationState {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  process.env.NEXT_PUBLIC_API_URL || "https://paper2-py-torch-tsgq.vercel.app";
 
 const INITIAL_STEPS: PipelineStep[] = [
   { id: 1, label: "Analyze Paper",         detail: "Extracting structure and equations",   status: "pending" },
