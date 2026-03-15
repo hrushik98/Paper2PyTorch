@@ -133,7 +133,7 @@ async def run_adk_pipeline(
                 parts=[
                     types.Part.from_bytes(data=pdf_bytes, mime_type="application/pdf"),
                     types.Part.from_text(
-                        "Run the complete Paper2PyTorch pipeline on this paper: "
+                        text="Run the complete Paper2PyTorch pipeline on this paper: "
                         "analyze it, design a minimal implementation, author a "
                         "full Jupyter notebook with PyTorch code, then review "
                         "and repair the notebook cells."
