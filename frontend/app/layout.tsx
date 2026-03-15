@@ -13,8 +13,21 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const themeInitializer = `
+    (function () {
+      try {
+        var storedTheme = localStorage.getItem("theme");
+        var theme = storedTheme === "light" ? "light" : "dark";
+        document.documentElement.classList.remove("dark", "light");
+        document.documentElement.classList.add(theme);
+      } catch (e) {
+        document.documentElement.classList.add("dark");
+      }
+    })();
+  `;
+
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -22,8 +35,9 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        <script dangerouslySetInnerHTML={{ __html: themeInitializer }} />
       </head>
-      <body className="bg-[#09090b] text-zinc-50 min-h-screen antialiased">
+      <body className="min-h-screen antialiased bg-[var(--bg)] text-[var(--text)]">
         {children}
       </body>
     </html>

@@ -9,7 +9,19 @@
   --surface: #111113;
   --border: #27272a;
   --muted: #52525b;
+  --text: #fafafa;
   --accent: #06b6d4;
+  --grid-line: rgba(39, 39, 42, 0.4);
+}
+
+html.light {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --border: #cbd5e1;
+  --muted: #64748b;
+  --text: #0f172a;
+  --accent: #0ea5e9;
+  --grid-line: rgba(148, 163, 184, 0.35);
 }
 
 * {
@@ -22,7 +34,7 @@ html {
 
 body {
   background: var(--bg);
-  color: #fafafa;
+  color: var(--text);
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -47,8 +59,8 @@ body {
 /* Grid background pattern */
 .grid-bg {
   background-image:
-    linear-gradient(rgba(39, 39, 42, 0.4) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(39, 39, 42, 0.4) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -109,3 +121,32 @@ body {
   border-color: var(--accent) !important;
   background: rgba(6, 182, 212, 0.04) !important;
 }
+
+/* Light theme class overrides for existing utility-heavy markup */
+html.light .bg-zinc-950 { background-color: #f1f5f9 !important; }
+html.light .bg-zinc-900 { background-color: #ffffff !important; }
+html.light .bg-zinc-900\/50 { background-color: rgba(241, 245, 249, 0.8) !important; }
+html.light .bg-zinc-800 { background-color: #e2e8f0 !important; }
+html.light .bg-\[\#09090b\] { background-color: #f8fafc !important; }
+html.light .bg-surface { background-color: #ffffff !important; }
+html.light .hover\:bg-surface:hover { background-color: #f1f5f9 !important; }
+
+html.light .border-zinc-800 { border-color: #cbd5e1 !important; }
+html.light .border-zinc-700 { border-color: #94a3b8 !important; }
+html.light .hover\:border-zinc-700:hover { border-color: #64748b !important; }
+html.light .hover\:border-zinc-600:hover { border-color: #475569 !important; }
+
+html.light .text-zinc-50 { color: #0f172a !important; }
+html.light .text-zinc-100 { color: #0f172a !important; }
+html.light .text-zinc-200 { color: #1e293b !important; }
+html.light .text-zinc-300 { color: #334155 !important; }
+html.light .text-zinc-400 { color: #475569 !important; }
+html.light .text-zinc-500 { color: #64748b !important; }
+html.light .text-zinc-600 { color: #64748b !important; }
+html.light .text-zinc-700 { color: #64748b !important; }
+html.light .text-muted { color: #64748b !important; }
+html.light .hover\:text-zinc-400:hover { color: #334155 !important; }
+html.light .hover\:text-zinc-300:hover { color: #1e293b !important; }
+html.light .hover\:text-zinc-100:hover { color: #0f172a !important; }
+
+html.light .placeholder\:text-zinc-600::placeholder { color: #94a3b8 !important; }

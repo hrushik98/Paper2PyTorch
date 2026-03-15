@@ -17,6 +17,7 @@ import {
   Terminal,
   X,
 } from "lucide-react";
+import ThemeToggle from "@/components/theme-toggle";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES
@@ -474,7 +475,7 @@ export default function GeneratePage() {
 
   // ─────────────────────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-[#09090b]">
+    <div className="min-h-screen bg-[var(--bg)]">
       {/* Nav */}
       <nav className="border-b border-zinc-800 px-6 py-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
@@ -495,11 +496,14 @@ export default function GeneratePage() {
             </div>
           </div>
 
-          <div
-            className="text-xs font-mono text-zinc-600 truncate max-w-xs"
-            title={paperLabel}
-          >
-            {paperLabel}
+          <div className="flex items-center gap-3">
+            <div
+              className="text-xs font-mono text-zinc-600 truncate max-w-xs"
+              title={paperLabel}
+            >
+              {paperLabel}
+            </div>
+            <ThemeToggle />
           </div>
         </div>
       </nav>

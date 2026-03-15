@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   ArrowRight,
+  Star,
   FileText,
   Link2,
   ChevronRight,
@@ -14,6 +15,7 @@ import {
   Terminal,
   Zap,
 } from "lucide-react";
+import ThemeToggle from "@/components/theme-toggle";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // CONSTANTS
@@ -148,7 +150,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090b] grid-bg">
+    <div className="min-h-screen bg-[var(--bg)] grid-bg">
       {/* ── Nav ─────────────────────────────────────────────────────────────── */}
       <nav className="border-b border-zinc-800 px-6 py-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
@@ -163,14 +165,21 @@ export default function Home() {
               <span className="w-1.5 h-1.5 rounded-full bg-accent pulse-dot" />
               Powered by Google ADK
             </Badge>
-            <a
-              href="https://github.com/hrushik98/Paper2PyTorch"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm font-mono"
-            >
-              GitHub
-            </a>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://github.com/hrushik98/Paper2PyTorch"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm font-mono"
+              >
+                GitHub
+              </a>
+              <span className="inline-flex items-center gap-1 text-xs font-mono text-zinc-500">
+                <Star size={12} className="text-amber-400" />
+                please star
+              </span>
+            </div>
+            <ThemeToggle />
           </div>
         </div>
       </nav>
