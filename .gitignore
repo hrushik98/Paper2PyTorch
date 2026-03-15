@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.env
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+.next/
+out/
+.env.local
+npm-debug.log*
+
+# Misc
+.DS_Store
+*.ipynb
+!tests/**/*.ipynb
+.vercel
