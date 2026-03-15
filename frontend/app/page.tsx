@@ -46,13 +46,13 @@ const PIPELINE_STEPS = [
   },
 ];
 
-const SAMPLE_PAPERS = [
-  "Attention Is All You Need",
-  "BERT: Pre-training of Deep Bidirectional Transformers",
-  "An Image is Worth 16×16 Words (ViT)",
-  "Denoising Diffusion Probabilistic Models",
-  "Deep Residual Learning for Image Recognition",
-  "Language Models are Few-Shot Learners (GPT-3)",
+const SAMPLE_PAPERS: { label: string; file: string }[] = [
+  { label: "Attention Is All You Need", file: "Attention_Is_All_You_Need.pdf" },
+  { label: "BERT: Pre-training of Deep Bidirectional Transformers", file: "BERT_Pre-training_Deep_Bidirectional_Transformers.pdf" },
+  { label: "An Image is Worth 16×16 Words (ViT)", file: "An_Image_is_Worth_16x16_Words_ViT.pdf" },
+  { label: "Denoising Diffusion Probabilistic Models", file: "Denoising_Diffusion_Probabilistic_Models.pdf" },
+  { label: "Deep Residual Learning for Image Recognition", file: "Deep_Residual_Learning_for_Image_Recognition.pdf" },
+  { label: "Language Models are Few-Shot Learners (GPT-3)", file: "Language_Models_are_Few-Shot_Learners_GPT3.pdf" },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -129,6 +129,14 @@ export default function Home() {
     e.preventDefault();
     setIsDragging(true);
   };
+
+  // ── Sample paper handling ───────────────────────────────────────────────────
+  const handleSamplePaper = useCallback(async (fileName: string) => {
+    const res = await fetch(`/papers/${fileName}`);
+    const blob = await res.blob();
+    const file = new File([blob], fileName, { type: "application/pdf" });
+    handleFileSelect(file);
+  }, [handleFileSelect]);
 
   // ── arXiv handling ─────────────────────────────────────────────────────────
   const handleArxivSubmit = () => {
@@ -284,12 +292,13 @@ export default function Home() {
             </div>
             <div className="flex flex-wrap gap-2">
               {SAMPLE_PAPERS.map((p) => (
-                <span
-                  key={p}
-                  className="text-xs font-mono px-2 py-1 rounded border border-zinc-800 text-zinc-500 hover:text-zinc-400 hover:border-zinc-700 transition-colors cursor-default"
+                <button
+                  key={p.label}
+                  onClick={() => handleSamplePaper(p.file)}
+                  className="text-xs font-mono px-2 py-1 rounded border border-zinc-800 text-zinc-500 hover:text-zinc-400 hover:border-zinc-700 transition-colors cursor-pointer"
                 >
-                  {p}
-                </span>
+                  {p.label}
+                </button>
               ))}
             </div>
           </div>

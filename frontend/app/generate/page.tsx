@@ -251,6 +251,14 @@ export default function GeneratePage() {
     []
   );
 
+  const appendThinkingLine = useCallback((line: string) => {
+    if (!line.trim()) return;
+    setState((s) => ({
+      ...s,
+      thinkingLines: [...s.thinkingLines.slice(-300), line],
+    }));
+  }, []);
+
   // ── Start generation ────────────────────────────────────────────────────────
   const startGeneration = useCallback(async () => {
     if (!apiKey.trim()) return;
@@ -276,7 +284,7 @@ export default function GeneratePage() {
     setState({
       phase: "running",
       steps: INITIAL_STEPS,
-      thinkingLines: [],
+      thinkingLines: ["Pipeline started. Waiting for model responses..."],
       draftJobId: null,
       finalJobId: null,
       errorMsg: null,
@@ -364,19 +372,18 @@ export default function GeneratePage() {
   function handleSSEEvent(event: string, payload: Record<string, unknown>) {
     switch (event) {
       case "thinking":
-        setState((s) => ({
-          ...s,
-          thinkingLines: [...s.thinkingLines.slice(-300), String(payload.text || "")],
-        }));
+        appendThinkingLine(String(payload.text || ""));
         break;
 
       case "progress": {
         const step = Number(payload.step);
         const detail = String(payload.detail || "");
+        const name = String(payload.name || `Step ${step}`);
         const isDone = detail.toLowerCase().includes("complete");
 
         if (isDone) {
           setStepStatus(step, "done", detail);
+          appendThinkingLine(`✓ ${name}: ${detail}`);
           // Start next step if there is one
           if (step < 4) setStepStatus(step + 1, "running");
           setState((s) => ({
@@ -385,6 +392,7 @@ export default function GeneratePage() {
           }));
         } else {
           setStepStatus(step, "running", detail);
+          appendThinkingLine(`→ ${name}: ${detail}`);
           setState((s) => ({
             ...s,
             progress: Math.max(s.progress, (STEP_PROGRESS[step] || 10) - 5),
@@ -394,6 +402,7 @@ export default function GeneratePage() {
       }
 
       case "draft_ready":
+        appendThinkingLine("Draft notebook is ready. Running final validation...");
         setState((s) => ({
           ...s,
           phase: "draft",
@@ -403,6 +412,7 @@ export default function GeneratePage() {
         break;
 
       case "complete":
+        appendThinkingLine("✓ Pipeline complete. Final notebook generated.");
         setState((s) => ({
           ...s,
           phase: "complete",
@@ -413,6 +423,7 @@ export default function GeneratePage() {
         break;
 
       case "error":
+        appendThinkingLine(`✗ Error: ${String(payload.error || "Unknown error")}`);
         setState((s) => ({
           ...s,
           phase: "error",
