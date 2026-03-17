@@ -152,7 +152,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[var(--bg)] grid-bg">
       {/* ── Nav ─────────────────────────────────────────────────────────────── */}
-      <nav className="border-b border-zinc-800 px-6 py-4">
+      <nav className="border-b border-zinc-800 px-4 sm:px-6 py-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Layers size={18} className="text-accent" />
@@ -160,12 +160,14 @@ export default function Home() {
               Paper2PyTorch
             </span>
           </div>
-          <div className="flex items-center gap-4">
-            <Badge>
-              <span className="w-1.5 h-1.5 rounded-full bg-accent pulse-dot" />
-              Powered by Google ADK
-            </Badge>
-            <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <span className="hidden sm:inline-flex">
+              <Badge>
+                <span className="w-1.5 h-1.5 rounded-full bg-accent pulse-dot" />
+                Powered by Google ADK
+              </Badge>
+            </span>
+            <div className="flex items-center gap-2 sm:gap-3">
               <a
                 href="https://github.com/hrushik98/Paper2PyTorch"
                 target="_blank"
@@ -174,9 +176,8 @@ export default function Home() {
               >
                 GitHub
               </a>
-              <span className="inline-flex items-center gap-1 text-xs font-mono text-zinc-500">
+              <span className="hidden sm:inline-flex items-center gap-1 text-xs font-mono text-zinc-500">
                 <Star size={12} className="text-amber-400" />
-                please star
               </span>
             </div>
             <ThemeToggle />
@@ -184,19 +185,19 @@ export default function Home() {
         </div>
       </nav>
 
-      <main className="max-w-5xl mx-auto px-6">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* ── Hero ──────────────────────────────────────────────────────────── */}
-        <section className="pt-20 pb-16">
+        <section className="pt-12 pb-10 sm:pt-20 sm:pb-16">
           <div className="max-w-2xl">
             <div className="font-mono text-xs text-muted mb-6 tracking-widest uppercase">
               Research Paper → PyTorch Implementation
             </div>
 
-            <h1 className="font-mono text-5xl font-semibold leading-tight mb-6 text-zinc-50">
+            <h1 className="font-mono text-3xl sm:text-5xl font-semibold leading-tight mb-6 text-zinc-50">
               Drop a paper.
               <br />
               <span className="text-accent">Get working code.</span>
-              <span className="inline-block w-0.5 h-10 bg-accent ml-1 align-bottom animate-cursor-blink" />
+              <span className="inline-block w-0.5 h-7 sm:h-10 bg-accent ml-1 align-bottom animate-cursor-blink" />
             </h1>
 
             <p className="text-zinc-400 text-lg leading-relaxed mb-8 max-w-xl">
@@ -314,8 +315,8 @@ export default function Home() {
         </section>
 
         {/* ── Pipeline visualization ─────────────────────────────────────────── */}
-        <section className="border-t border-zinc-800 py-20">
-          <div className="text-xs font-mono text-zinc-600 mb-12 uppercase tracking-widest">
+        <section className="border-t border-zinc-800 py-12 sm:py-20">
+          <div className="text-xs font-mono text-zinc-600 mb-8 sm:mb-12 uppercase tracking-widest">
             The Pipeline
           </div>
 
@@ -345,8 +346,8 @@ export default function Home() {
         </section>
 
         {/* ── What you get ──────────────────────────────────────────────────── */}
-        <section className="border-t border-zinc-800 py-20">
-          <div className="text-xs font-mono text-zinc-600 mb-12 uppercase tracking-widest">
+        <section className="border-t border-zinc-800 py-12 sm:py-20">
+          <div className="text-xs font-mono text-zinc-600 mb-8 sm:mb-12 uppercase tracking-widest">
             What You Get
           </div>
 
@@ -397,8 +398,8 @@ export default function Home() {
       </main>
 
       {/* ── Footer ──────────────────────────────────────────────────────────── */}
-      <footer className="border-t border-zinc-800 px-6 py-8">
-        <div className="max-w-5xl mx-auto flex items-center justify-between text-xs font-mono text-zinc-600">
+      <footer className="border-t border-zinc-800 px-4 sm:px-6 py-8">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-mono text-zinc-600">
           <span>Paper2PyTorch — MIT License</span>
           <span>
             Powered by{" "}

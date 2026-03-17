@@ -477,9 +477,9 @@ export default function GeneratePage() {
   return (
     <div className="min-h-screen bg-[var(--bg)]">
       {/* Nav */}
-      <nav className="border-b border-zinc-800 px-6 py-4">
+      <nav className="border-b border-zinc-800 px-4 sm:px-6 py-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <button
               onClick={() => router.push("/")}
               className="flex items-center gap-1.5 text-zinc-500 hover:text-zinc-300 transition-colors text-sm font-mono"
@@ -498,7 +498,7 @@ export default function GeneratePage() {
 
           <div className="flex items-center gap-3">
             <div
-              className="text-xs font-mono text-zinc-600 truncate max-w-xs"
+              className="hidden sm:block text-xs font-mono text-zinc-600 truncate max-w-[160px] sm:max-w-xs"
               title={paperLabel}
             >
               {paperLabel}
@@ -508,11 +508,11 @@ export default function GeneratePage() {
         </div>
       </nav>
 
-      <div className="max-w-5xl mx-auto px-6 py-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
           {/* ── Left: Step tracker ─────────────────────────────────────────── */}
           <aside>
-            <div className="sticky top-8">
+            <div className="lg:sticky lg:top-8">
               <div className="text-xs font-mono text-zinc-600 uppercase tracking-widest mb-6">
                 Pipeline
               </div>
@@ -578,7 +578,7 @@ export default function GeneratePage() {
             {/* Idle: API key + start */}
             {state.phase === "idle" && (
               <div className="animate-slide-up">
-                <div className="border border-zinc-800 rounded-lg p-8 bg-surface max-w-xl">
+                <div className="border border-zinc-800 rounded-lg p-5 sm:p-8 bg-surface max-w-xl">
                   <div className="text-xs font-mono text-zinc-600 uppercase tracking-widest mb-6">
                     Ready to Generate
                   </div>
@@ -659,7 +659,7 @@ export default function GeneratePage() {
 
                 {/* Draft available banner */}
                 {isDraft && state.draftJobId && (
-                  <div className="mt-4 flex items-center justify-between p-4 rounded-lg border border-amber-500/20 bg-amber-500/5 animate-slide-up">
+                  <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-lg border border-amber-500/20 bg-amber-500/5 animate-slide-up">
                     <div>
                       <div className="font-mono text-sm text-amber-400 font-medium">
                         Draft notebook ready
@@ -680,7 +680,7 @@ export default function GeneratePage() {
             {/* Complete */}
             {isComplete && state.finalJobId && (
               <div className="animate-slide-up">
-                <div className="border border-emerald-500/20 rounded-lg p-8 bg-emerald-500/5">
+                <div className="border border-emerald-500/20 rounded-lg p-5 sm:p-8 bg-emerald-500/5">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-8 h-8 rounded-full bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center">
                       <Check size={14} className="text-emerald-400" />
@@ -778,7 +778,7 @@ export default function GeneratePage() {
             {/* Error */}
             {isError && (
               <div className="animate-slide-up">
-                <div className="border border-red-500/20 rounded-lg p-8 bg-red-500/5">
+                <div className="border border-red-500/20 rounded-lg p-5 sm:p-8 bg-red-500/5">
                   <div className="flex items-start gap-3 mb-4">
                     <div className="w-8 h-8 rounded-full bg-red-500/15 border border-red-500/40 flex items-center justify-center shrink-0 mt-0.5">
                       <X size={14} className="text-red-400" />
